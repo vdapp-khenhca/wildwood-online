@@ -7,7 +7,7 @@
 <button id="right" class="skillbtn"><b class="key">CHUỘT PHẢI</b><i>✦</i><span>Chiêu 2</span><em></em></button>
 <button id="ultimate" class="skillbtn ultimate"><b class="key">SPACE</b><i>✹</i><span>NỘ</span><em>0%</em><u></u></button>
 </div><div id="passive"  class="passive"><b>◉ NỘI TẠI</b><span></span></div><div class="lockrow"><button id="lock">Khóa chuột</button> · Esc thả chuột để dùng menu</div></div></div>
-<div id="joystick" aria-label="Di chuyển"><div class="joyRing"><div id="joyKnob"></div></div></div>
+<div id="perfBadge">FPS --</div><div id="joystick" aria-label="Di chuyển"><div class="joyRing"><div id="joyKnob"></div></div></div>
 <button id="infoToggle" aria-label="Thông tin">‹</button>
 <div id="help" class="panel"></div><div id="death"><div class="panel"><div class="eyebrow">RỪNG VẪN ĐỢI BẠN</div><h2 id="respawn"></h2><p>Điểm được giữ lại. Thử một đường săn khác!</p></div></div>
 <script>/*ENGINE*/</script><script>/*CLIENT*/</script>
@@ -81,6 +81,12 @@
 }
 </style>
 
+
+<style>
+#perfBadge{display:none;position:fixed;right:10px;top:8px;z-index:80;padding:5px 8px;border-radius:9px;background:#062a24d9;border:1px solid #ffffff22;color:#dff7d1;font:700 11px/1.1 ui-monospace,Consolas,monospace;pointer-events:none}
+body.gameRunning #perfBadge{display:block}
+.mobilePlay #perfBadge{right:8px;top:8px;font-size:10px}
+</style>
 </html>
 
 <style>
