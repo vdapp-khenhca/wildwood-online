@@ -1,0 +1,16 @@
+WILDWOOD FINAL - SINGAPORE
+
+Render khong cho doi Region cua service da tao.
+Can tao MOT SERVICE/BLUEPRINT MOI tu cung GitHub repo va chon SINGAPORE.
+
+render.yaml da duoc khoa:
+region: singapore
+
+Sau khi service Singapore LIVE:
+- Mo link onrender.com MOI.
+- Vao game xem FPS / PING / JIT.
+- Gui link MOI cho ban be.
+- Khi xac nhan chay tot, co the xoa service cu.
+
+Luu y: Region Singapore giup giam khoang cach mang voi Viet Nam,
+nhung ping thuc te van phu thuoc ISP/duong truyen.
