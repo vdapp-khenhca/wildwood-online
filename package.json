@@ -1,6 +1,6 @@
 {
   "name": "wildwood-online",
-  "version": "1.11.0",
+  "version": "1.12.0",
   "private": true,
   "description": "Wildwood multiplayer browser game",
   "main": "server.js",
