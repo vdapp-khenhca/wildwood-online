@@ -1,0 +1,10 @@
+Wildwood 1.2 — Kiểm tra cập nhật
+- 100 lần ăn liên tiếp: kích thước tăng ở từng lần, hệ số chuỗi/điểm tăng.
+- Chuỗi hết hạn; vật phẩm hồi máu, mana, hút mồi, tốc độ.
+- Mưa quả đúng thời gian; đom đóm chỉ thưởng một lần; ong cảnh báo trước gây sát thương và thả mật sau.
+- Chết mất một phần khối lượng, xóa chuỗi, hồi mana.
+- Hai phút mô phỏng 24 AI, nhiều sự kiện, không có số NaN/mana ngoài giới hạn.
+- Chromium: ăn tăng size/chuỗi, loại bỏ chiêu 123, sự kiện/HUD, khóa chuột/chạy/hướng dẫn.
+- Hai trình duyệt LAN nhận cùng sự kiện, có dữ liệu khối lượng/chuỗi và không còn extraCD.
+- Không có lỗi JavaScript trong kiểm tra trình duyệt.
+- Chưa thử độ cân bằng với toàn bộ nhân viên; runtime Windows giữ bản đã kiểm checksum.

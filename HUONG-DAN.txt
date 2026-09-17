@@ -1,0 +1,147 @@
+WILDWOOD — KHU RỪNG TINH NGHỊCH
+Bản 1.2 • Windows 10/11 64-bit • Chrome / Edge • Chuột và bàn phím
+
+1. CHƠI NGAY VỚI AI
+Giải nén cả thư mục. Nhấp đúp CHOI-NGAY.html, nhập tên, chọn thú, bấm VÀO RỪNG.
+Không cần Internet, không cần cài đặt. Âm thanh bắt đầu khi bấm VÀO RỪNG.
+
+2. CHƠI CHUNG TRONG CÔNG TY
+Trên MỘT máy Windows: nhấp đúp MO-PHONG-CONG-TY.bat.
+Đã kèm bộ chạy Node.js chính thức; không cần cài thêm, không chạy npm install.
+Giữ cửa sổ phòng mở. Trình duyệt mở http://localhost:8787.
+Nếu trình duyệt mở sớm báo lỗi, bấm tải lại sau vài giây.
+Cửa sổ phòng in địa chỉ dạng http://192.168.x.x:8787.
+Gửi địa chỉ đó cho đồng nghiệp cùng mạng Wi-Fi/LAN. Họ chỉ cần trình duyệt.
+Mọi người nhập CÙNG mã phòng (mặc định CONGTY) để gặp nhau.
+Mã phòng khác tạo trận khác. Người đầu tiên chọn tổng 16, 24 hoặc 30 nhân vật.
+AI bù chỗ trống. Tối đa 30 người thật/phòng. Đây là giới hạn cấu hình,
+chưa phải cam kết tải 30 máy trên mọi đường truyền và máy chủ.
+Nếu Windows Firewall hỏi: cho phép Node.js trên mạng nội bộ (Private).
+Nếu đồng nghiệp không vào được: kiểm tra cùng mạng, địa chỉ LAN, quyền firewall,
+và Wi-Fi khách có đang chặn các thiết bị liên lạc với nhau hay không.
+Không gửi localhost cho đồng nghiệp; localhost là máy riêng của từng người.
+Đây là phòng LAN, chưa có máy chủ Internet công khai. Mã phòng không phải mật khẩu.
+Không dùng bộ này như máy chủ Internet công khai khi chưa bổ sung xác thực/HTTPS.
+Dừng phòng: Ctrl+C hoặc đóng cửa sổ. Điểm chỉ lưu trong phiên, không lưu khi tắt máy chủ.
+Mac/Linux: cài Node.js, chạy sh start-mac-linux.sh. Bộ node.exe kèm theo chỉ cho Windows x64.
+
+3. ĐIỀU KHIỂN
+Bấm vào sân hoặc nút Khóa chuột để bật Pointer Lock. Esc thả chuột để dùng menu.
+Rê chuột: đi theo hướng chấm ngắm trong game. Con trỏ gần giữa màn hình = chậm; ngay giữa = dừng.
+Nhấn chuột trái: đánh một lần, miễn mana. Giữ quá 0,25 giây: chạy nhanh 1,65 lần.
+Khi giữ, chỉ đánh lúc nhấn đầu tiên, không tự đánh lặp. Chạy hao 18 mana/giây.
+Chuột phải: kỹ năng né/phòng thủ, tốn 18 mana, giữ để tự dùng khi hồi xong.
+Đã bỏ toàn bộ chiêu phím 1, 2, 3. Chỉ có hai chiêu chuột trái và phải.
+Mana tối đa 100, hồi 12/giây sau 0,8 giây không tiêu hao. Hết mana vẫn đánh thường.
+Nếu chạy cạn mana, thả chuột rồi giữ lại để chạy tiếp; tránh chạy giật ngắt liên tục.
+HUD ghi rõ mana cần dùng, hồi chiêu và thanh mana màu xanh dương.
+Chuột phải bị chặn menu mặc định trong trận, kể cả trên HUD.
+Trình duyệt có thể hiện thông báo cấp quyền/thoát khóa chuột; game không chặn Esc.
+Nếu trình duyệt từ chối khóa, vẫn có chế độ rê chuột trong sân.
+Mất focus/đổi tab/thả khóa: dừng thao tác, không kẹt chạy hay đánh. Trận vẫn tiếp tục.
+Space hoặc bấm Tiến hóa: nâng cấp khi đủ năng lượng.
+Bấm bản đồ góc phải: mở/đóng bản đồ lớn. Bấm Mẹo: xem hướng dẫn đúng loài.
+Nút ♫: bật/tắt âm thanh. Chọn lại thú: rời trận, chọn nhân vật mới.
+Hướng dẫn/bản đồ không tạm dừng trận. Bản này tối ưu chuột trên PC.
+
+4. LUẬT
+Trận 8 phút. Điểm từ ăn đốm và hạ đối thủ; chết giữ điểm, mất 30% năng lượng và 35% khối lượng cơ thể.
+Hồi sinh sau 3 giây và được khiên 3 giây. Tấn công sẽ bỏ khiên.
+Đốm khi chết có giới hạn để tránh tăng sức mạnh vô hạn.
+Mỗi lần ăn tăng khối lượng và kích thước ngay, không cần bấm Space.
+Kích thước tăng nhanh lúc đầu rồi chậm dần, tiến gần giới hạn 2,4 lần.
+Va chạm, tầm ăn và vùng bị đánh thay đổi theo kích thước; không chỉ phóng ảnh.
+Tiến hóa bằng Space ở 70/180/350 năng lượng: tăng vừa phải máu/sức đánh, giảm nhẹ tốc độ.
+Không có mua sức mạnh, không có loài vượt trội theo chủ ý; cân bằng cần tiếp tục thử với người thật.
+Rắn/Bọ cạp: độc rút máu, không xử tử sau 3 giây. Lửng giảm thời gian nhiễm độc.
+Vòng cây có dấu +: hồi máu nhanh và giải độc. Ngoài giao tranh máu hồi chậm.
+Ao làm chậm đa số loài; cá sấu bơi nhanh. Đá chặn di chuyển và đạn tơ.
+Bụi che người ở xa. Cây cao trong suốt khi bạn đi phía dưới.
+Tầm nhìn giới hạn; bản đồ nhỏ không tiết lộ đối thủ chưa thấy.
+
+5. AI
+AI dùng cùng máu, hồi chiêu, va chạm, độc và tầm nhìn với người.
+Biết kiếm đốm, đuổi, rút khi yếu hoặc đang hồi chiêu, né đá, dùng hai chiêu, tiến hóa.
+AI dùng cùng giới hạn mana và hồi chiêu, biết hướng tới sự kiện và né vùng ong. Có thể chạy khi cần rút lui.
+Có thời gian suy nghĩ và xác suất quyết định; không phải AI học máy hay đối thủ hoàn hảo.
+AI có ký hiệu AI trong tên. Không gán AI thành nhân viên thật.
+
+6. ĐỒ HỌA VÀ ÂM THANH
+Nhân vật và rừng được vẽ bằng Canvas 2D, không dùng emoji thay nhân vật.
+15 mẫu thú riêng, ao nước, cây, bụi, đá, đốm sáng, chu kỳ ánh sáng.
+Nhạc nền tổng hợp, tiếng chim, nhặt đốm và trúng đòn bằng Web Audio.
+Toàn bộ tài nguyên chơi nằm trong gói, không phụ thuộc CDN.
+Nguồn game: engine.js, client.js, shell.html, server.js.
+CHOI-NGAY.html là bản gộp dùng cho cả offline và máy chủ.
+Node.js v22.14.0 Windows x64 lấy từ nodejs.org; mã SHA-256 được xác minh khi đóng gói.
+Giấy phép Node.js và thành phần phụ thuộc: NODE-LICENSE.txt.
+
+7. VÒNG CHƠI MỚI — ĂN, NỐI CHUỖI, TRANH MỒI
+Ăn tiếp trong vòng 4 giây để nối chuỗi. Mỗi 5 miếng tăng 20% điểm, tối đa x2.
+Mỗi 10 miếng trong chuỗi hồi thêm 10 mana. Chuỗi mất khi chết hoặc ngừng ăn quá 4 giây.
+Hệ số chuỗi chỉ tăng điểm, không nhân khối lượng để tránh tăng sức mạnh vô hạn.
+Thức ăn đặc biệt được tự động kích hoạt khi ăn:
+- Vàng: nhiều năng lượng hơn đốm thường.
+- Đỏ dấu +: hồi 22 máu.
+- Lam chữ M: hồi 35 mana.
+- Tím chữ U: hút thức ăn trong phạm vi 125 đơn vị, kéo dài 7 giây.
+- Xanh lá dấu »: tốc độ 6 giây; không nhân thêm tốc độ nếu đang giữ chuột chạy.
+
+Sự kiện đầu sau 12 giây; các sự kiện sau cách thời điểm bắt đầu trước 38–50 giây.
+Mỗi lần chọn ngẫu nhiên một trong ba loại, không lặp loại ngay trước.
+Vị trí ưu tiên gần một người thật; có tên, trạng thái, hướng chỉ và dấu trên minimap.
+1) Mưa quả vàng: cảnh báo 3 giây, rồi xuất hiện 38 đốm/quả để tranh nhau ăn.
+2) Đom đóm vàng: bay trốn người áp sát. Ai chạm được nhận 45 năng lượng và hút mồi 7 giây.
+3) Tổ ong: cảnh báo 3 giây, gây 7 sát thương/giây trong vùng suốt 10 giây, rồi thả 22 phần mật.
+Cơ chế khiên/giảm sát thương của thú vẫn áp dụng với ong. Thú đang bay cao không thể ăn.
+AI có thể tranh mồi sự kiện, đuổi đom đóm và né vùng ong đang hoạt động.
+Đây là thay đổi để tăng nhịp chơi; độ cuốn hút và cân bằng cần phản hồi từ trận thật.
+
+
+=== BẢN 1.3 ===
+- Chế độ Dễ chơi: tự phòng thủ + tự tiến hóa.
+- Giữ nguyên combat, chạy, mana, combo, sự kiện, 15 loài và trận 8 phút.
+- Combo 20: hút mồi 3 giây; combo 30: thưởng 3 quả vàng.
+- Mục tiêu ngắn luân phiên trong trận.
+- Mischief in the Moss làm nhạc nền; thêm lớp âm thanh thích ứng cho combo, nguy hiểm và sự kiện.
+
+
+=== BẢN 1.4 ===
+Mỗi loài có 3 chiêu chủ động + 1 nội tại. Q = chiêu 1, E = chiêu 2, R = chiêu 3, Space = tiến hóa. Chuột trái vẫn dùng chiêu 1/giữ để chạy; chuột phải vẫn dùng chiêu 2. HUD hiển thị icon, phím, tên chiêu, mana và countdown hồi chiêu.
+
+
+=== BẢN 1.5 · SỬA NHẠC ===
+- File Mischief_in_the_Moss.mp3 đã được đóng gói lại từ file người dùng gửi.
+- Nhạc bắt đầu sau lần bấm/chạm/phím đầu tiên vì trình duyệt thường chặn autoplay.
+- Nút góc trên hiển thị ▶ BẬT NHẠC khi cần cấp quyền phát.
+- CHOI-NGAY-NHAC-NHUNG.html có nhạc nhúng trực tiếp, mở file là chơi không cần server.
+- Bản server vẫn dùng file MP3 riêng để tải nhanh hơn.
+
+
+=== BẢN 1.6 · 2 CHIÊU + NỘ ===
+- Chuột trái: Chiêu 1; giữ chuột trái để chạy nhanh.
+- Chuột phải: Chiêu 2.
+- Tự tiến hóa khi đủ XP; Space chỉ dùng cho chiêu cuối.
+- Ăn, gây sát thương, giữ combo và hạ đối thủ để tích thanh Nộ 0–100%.
+- Đủ 100% mới có thể bấm Space. Mỗi loài có tên, màu, hiệu ứng và âm thanh skill/nộ khác nhau.
+
+
+=== HOTFIX 1.6.1 ===
+- Sửa lỗi đứng hình do HUD vẫn truy cập nút Tiến hóa đã bị xóa.
+- Tiến hóa vẫn tự động; Space chỉ dùng Nộ khi thanh đạt 100%.
+
+
+=== BẢN 1.7 · GIAO DIỆN THOÁNG ===
+- Máu và mana hiển thị ngay dưới nhân vật.
+- Thanh HUD lớn phía dưới được bỏ khỏi tầm nhìn.
+- 2 chiêu, Nộ, nội tại và mục tiêu chuyển sang cột phải.
+- Minimap và bảng xếp hạng thu gọn để vùng chơi trung tâm thoáng hơn.
+
+
+=== BẢN 1.8 ONLINE READY ===
+- Sẵn sàng deploy GitHub + Render.
+- Dùng PORT của hosting và bind 0.0.0.0.
+- Có /health và /status.
+- Mặc định WORLD1 để người dùng cùng link vào chung world.
+- Timeout mạng tăng lên 30 giây.
+- Có package.json, render.yaml, README.md và .gitignore.
