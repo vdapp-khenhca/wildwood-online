@@ -44,3 +44,11 @@ AI vẫn bù các vị trí còn trống.
 Game state hiện nằm trong RAM của một Node process. Để tất cả người chơi luôn gặp nhau trong
 cùng world, chỉ chạy **1 instance** của service. Nếu sau này scale nhiều instance, cần chuyển
 room/game state sang kiến trúc shared state.
+
+
+## 1.9 Mobile + Online Smooth
+- Joystick trái trên điện thoại.
+- 2 skill + Nộ dạng nút tròn bên phải.
+- Panel thông tin thu gọn bằng mũi tên.
+- Input chỉ gửi khi thay đổi + heartbeat; snapshot 7.5Hz, simulation 30Hz.
+- Desktop giữ chuột trái/phải + Space.

@@ -7,6 +7,8 @@
 <button id="right" class="skillbtn"><b class="key">CHUỘT PHẢI</b><i>✦</i><span>Chiêu 2</span><em></em></button>
 <button id="ultimate" class="skillbtn ultimate"><b class="key">SPACE</b><i>✹</i><span>NỘ</span><em>0%</em><u></u></button>
 </div><div id="passive"  class="passive"><b>◉ NỘI TẠI</b><span></span></div><div class="lockrow"><button id="lock">Khóa chuột</button> · Esc thả chuột để dùng menu</div></div></div>
+<div id="joystick" aria-label="Di chuyển"><div class="joyRing"><div id="joyKnob"></div></div></div>
+<button id="infoToggle" aria-label="Thông tin">‹</button>
 <div id="help" class="panel"></div><div id="death"><div class="panel"><div class="eyebrow">RỪNG VẪN ĐỢI BẠN</div><h2 id="respawn"></h2><p>Điểm được giữ lại. Thử một đường săn khác!</p></div></div>
 <script>/*ENGINE*/</script><script>/*CLIENT*/</script>
 <style>
@@ -28,6 +30,57 @@
 #sideQuest{font-size:9px;padding:6px 7px!important;margin:0!important}
 @media(max-width:800px){.hud .topLeft{display:none}.hud .clock{transform:scale(.85);transform-origin:top center}.hud .right{width:142px!important}.hud .right #map{width:128px!important;height:128px!important}}
 </style>
+
+<style>
+/* 1.9 MOBILE + ONLINE SMOOTH */
+#joystick,#infoToggle{display:none}
+@media (pointer:coarse),(max-width:760px){
+ html,body{overscroll-behavior:none;touch-action:none}
+ .mobilePlay #game{touch-action:none}
+ .mobilePlay .hud .clock{left:50%!important;top:8px!important;transform:translateX(-50%) scale(.72)!important;transform-origin:top center!important}
+ .mobilePlay .hud .topLeft{display:none!important}
+ .mobilePlay .hud .right{
+   position:fixed!important;top:8px!important;right:-188px!important;width:176px!important;
+   max-height:calc(100vh - 16px);overflow-y:auto;z-index:35;transition:right .22s ease;
+   padding:6px!important;background:#082a25e8;border-radius:14px 0 0 14px;backdrop-filter:blur(8px)
+ }
+ .mobilePlay .hud .right.open{right:0!important}
+ .mobilePlay .hud .right #map{width:158px!important;height:158px!important}
+ .mobilePlay .hud .right #board{max-height:112px!important}
+ .mobilePlay #infoToggle{
+   display:block;position:fixed;right:0;top:44%;z-index:38;width:31px;height:58px;border-radius:14px 0 0 14px;
+   padding:0;font-size:24px;background:#0b3932e8;color:#ffe59a;border:1px solid #ffffff2a
+ }
+ .mobilePlay .hud .right.open~#infoToggle{right:176px}
+ .mobilePlay #joystick{
+   display:block;position:fixed;left:18px;bottom:max(18px,env(safe-area-inset-bottom));width:126px;height:126px;z-index:30;
+   border-radius:50%;touch-action:none
+ }
+ .mobilePlay .joyRing{position:absolute;inset:12px;border-radius:50%;background:#0b332b70;border:2px solid #dff4d02f;box-shadow:inset 0 0 24px #0006}
+ .mobilePlay #joyKnob{position:absolute;left:50%;top:50%;width:48px;height:48px;margin:-24px;border-radius:50%;background:#d9efc9bb;border:2px solid #fff8;box-shadow:0 5px 18px #0008;will-change:transform}
+ .mobilePlay #sideSkills{
+   position:fixed!important;right:max(16px,env(safe-area-inset-right));bottom:max(15px,env(safe-area-inset-bottom));
+   width:174px!important;height:146px;z-index:32;display:block!important;pointer-events:none
+ }
+ .mobilePlay #sideSkills .skillbtn{pointer-events:auto;position:absolute!important;border-radius:50%!important;padding:0!important;min-height:0!important;touch-action:none;user-select:none}
+ .mobilePlay #sideSkills #left{width:68px;height:68px;right:0;bottom:0}
+ .mobilePlay #sideSkills #right{width:62px;height:62px;right:78px;bottom:8px}
+ .mobilePlay #sideSkills #ultimate{width:58px;height:58px;right:12px;bottom:78px}
+ .mobilePlay #sideSkills .skillbtn .key{display:none!important}
+ .mobilePlay #sideSkills .skillbtn i{font-size:23px!important;display:block!important}
+ .mobilePlay #sideSkills .skillbtn span{font-size:9px!important;max-width:58px;margin:auto}
+ .mobilePlay #sideSkills .skillbtn em{font-size:9px!important}
+ .mobilePlay #sidePassive,.mobilePlay #sideQuest{font-size:9px!important}
+ .mobilePlay #lock{display:none!important}
+ .mobilePlay .lockrow{display:none!important}
+ .mobilePlay #toast{max-width:52vw;font-size:10px!important;bottom:155px!important}
+ .mobilePlay #help{max-width:72vw!important;max-height:65vh;overflow:auto}
+}
+@media (pointer:coarse) and (orientation:portrait){
+ .mobilePlay:after{content:"Xoay ngang để chơi thoải mái hơn";position:fixed;left:50%;bottom:5px;transform:translateX(-50%);z-index:50;font:10px Segoe UI;color:#fff9;background:#06251fc9;padding:4px 9px;border-radius:10px;pointer-events:none}
+}
+</style>
+
 </html>
 
 <style>

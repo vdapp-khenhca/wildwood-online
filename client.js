@@ -112,7 +112,37 @@ addEventListener('keydown',e=>{if(!active||/INPUT|TEXTAREA|SELECT/.test(e.target
 $('left').onpointerdown=e=>{e.preventDefault();input.l=true;input.tap=true;$('left').setPointerCapture(e.pointerId)};
 $('right').onpointerdown=e=>{e.preventDefault();input.r=true;$('right').setPointerCapture(e.pointerId)};
 for(let id of ['left','right']){const clear=()=>{input[id==='left'?'l':'r']=false};$(id).onpointerup=clear;$(id).onpointercancel=clear;$(id).onlostpointercapture=clear}
-setInterval(async()=>{if(!active||!online||netBusy)return;netBusy=true;let payload={...input,id:pid};input.e=false;input.tap=false;try{let r=await fetch('/input',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!r.ok)toast('Không gửi được thao tác. Nếu mất phiên, hãy vào lại phòng.')}catch{}finally{netBusy=false}},65);
+let lastNetPayload='',lastNetSend=0;
+
+const mobilePlay=matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0;
+let joyId=null,joyOrigin={x:0,y:0};
+function setJoy(e){
+ let dx=e.clientX-joyOrigin.x,dy=e.clientY-joyOrigin.y,d=Math.hypot(dx,dy),m=48;
+ if(d>m){dx*=m/d;dy*=m/d}
+ input.x=dx/m;input.y=dy/m;
+ let knob=$('joyKnob');if(knob)knob.style.transform=`translate(${dx}px,${dy}px)`;
+}
+function clearJoy(){joyId=null;input.x=0;input.y=0;let k=$('joyKnob');if(k)k.style.transform='translate(0,0)'}
+function setupMobile(){
+ if(!mobilePlay)return;
+ document.body.classList.add('mobilePlay');aiming=false;
+ let zone=$('joystick');
+ zone.onpointerdown=e=>{if(!active)return;e.preventDefault();joyId=e.pointerId;zone.setPointerCapture(e.pointerId);let r=zone.getBoundingClientRect();joyOrigin={x:r.left+r.width/2,y:r.top+r.height/2};setJoy(e)};
+ zone.onpointermove=e=>{if(e.pointerId===joyId)setJoy(e)};
+ zone.onpointerup=zone.onpointercancel=()=>clearJoy();
+ let toggle=$('infoToggle'),side=$('sideInfo');
+ toggle.onclick=e=>{e.preventDefault();side.classList.toggle('open');toggle.textContent=side.classList.contains('open')?'›':'‹'};
+ for(let id of ['left','right','ultimate']){let b=$(id);b?.addEventListener('touchstart',e=>e.preventDefault(),{passive:false})}
+}
+setupMobile();
+setInterval(async()=>{
+ if(!active||!online||netBusy)return;
+ let now=performance.now(), payload={...input,id:pid};
+ let sig=[+payload.x.toFixed(2),+payload.y.toFixed(2),payload.l?1:0,payload.r?1:0,payload.e?1:0,payload.tap?1:0].join(',');
+ if(sig===lastNetPayload&&now-lastNetSend<850)return;
+ lastNetPayload=sig;lastNetSend=now;netBusy=true;input.e=false;input.tap=false;
+ try{let r=await fetch('/input',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!r.ok&&r.status!==429)toast('Kết nối chập chờn · đang thử lại…')}catch{}finally{netBusy=false}
+},80);
 function screen(x,y){return{x:x-cam.x+width/2,y:y-cam.y+height/2}}
 function drawTerrain(o){if(PONDS.some(w=>Math.hypot(o.x-w.x,o.y-w.y)<w.r+10))return;let p=screen(o.x,o.y);if(p.x<-110||p.y<-140||p.x>width+110||p.y>height+150)return;let r=o.r;if(o.type==='rock'){ell(g,p.x+4,p.y+8,r+3,r*.7,'#17473550');ell(g,p.x,p.y,r,r*.72,'#879d8b');ell(g,p.x-5,p.y-7,r*.8,r*.5,'#acb8a1');line(g,[[p.x-r*.3,p.y-r*.5],[p.x+r*.35,p.y-r*.35]],'#d1d7b5',3)}else if(o.type==='bush'){for(let i=0;i<5;i++)ell(g,p.x+Math.cos(i*2.4)*r*.55,p.y+Math.sin(i*2.4)*r*.45,r*.6,r*.48,['#33795b','#428962','#55976b'][i%3]);for(let i=0;i<3;i++)ell(g,p.x+i*9-9,p.y-7,3,3,'#ddb68a')}else{ell(g,p.x+12,p.y+18,r*1.25,r*.68,'#17432f44');line(g,[[p.x,p.y+7],[p.x,p.y-30]],'#785e42',10);let fade=me&&Math.hypot(me.x-o.x,me.y-o.y)<r+55;g.globalAlpha=fade?.42:1;for(let i=0;i<5;i++){let xx=p.x+Math.cos(i*2.4)*r*.55,yy=p.y-28+Math.sin(i*2.4)*r*.4;ell(g,xx,yy,r*.8,r*.64,['#28654c','#317755','#42845c','#4b9162','#609869'][i]);ell(g,xx-4,yy-8,r*.43,r*.15,'#a2c77a19')}g.globalAlpha=1}}
 const QUESTS=[{label:'Ăn 12 miếng',test:p=>p.pickups-questBase.pickups>=12},{label:'Nối chuỗi 10',test:p=>p.bestChain>=10},{label:'Hạ 1 đối thủ',test:p=>p.kills-questBase.kills>=1},{label:'Ăn 20 miếng',test:p=>p.pickups-questBase.pickups>=20}];
@@ -127,7 +157,7 @@ let quest=$('quest');if(quest){quest.id='sideQuest';quest.classList.add('panel')
 }
 buildClearHUD();
 function render(now){let dt=Math.min(.05,(now-last)/1000);last=now;frame++;let t=active&&state?state.time:now/1000;
-if(active){simpleAssist(now);let dx=mouse.x-width/2,dy=mouse.y-height/2,len=Math.hypot(dx,dy);input.x=!aiming||len<20?0:dx/Math.max(100,len);input.y=!aiming||len<20?0:dy/Math.max(100,len);if(world){let p=world.players.find(p=>p.id===pid);p.input={...input};input.e=false;input.tap=false;world.step(dt);state=world.snapshot(pid);me=state.players.find(p=>p.id===pid)}if(me){cam.x+=(me.x-cam.x)*Math.min(1,dt*12);cam.y+=(me.y-cam.y)*Math.min(1,dt*12)}}else{cam.x=1700+Math.sin(t*.035)*550;cam.y=1500+Math.cos(t*.035)*400}
+if(active){simpleAssist(now);if(!mobilePlay){let dx=mouse.x-width/2,dy=mouse.y-height/2,len=Math.hypot(dx,dy);input.x=!aiming||len<20?0:dx/Math.max(100,len);input.y=!aiming||len<20?0:dy/Math.max(100,len);}if(world){let p=world.players.find(p=>p.id===pid);p.input={...input};input.e=false;input.tap=false;world.step(dt);state=world.snapshot(pid);me=state.players.find(p=>p.id===pid)}if(me){cam.x+=(me.x-cam.x)*Math.min(1,dt*(mobilePlay?8:10));cam.y+=(me.y-cam.y)*Math.min(1,dt*(mobilePlay?8:10))}}else{cam.x=1700+Math.sin(t*.035)*550;cam.y=1500+Math.cos(t*.035)*400}
 g.fillStyle='#64986b';g.fillRect(0,0,width,height);
 let startX=Math.floor((cam.x-width/2)/100)*100,startY=Math.floor((cam.y-height/2)/100)*100;
 for(let x=startX;x<cam.x+width/2+100;x+=100)for(let y=startY;y<cam.y+height/2+100;y+=100){let p=screen(x,y),h=Math.abs(Math.sin(x*12.3+y*4.56));ell(g,p.x,p.y,60+h*50,40+h*40,h>.5?'#699b6c':'#619469');for(let j=0;j<3;j++){let xx=p.x+j*21+h*35,yy=p.y+h*60;line(g,[[xx-3,yy-4],[xx,yy-9],[xx+2,yy-4]],'#b5cc873a',1.5)}}
